@@ -384,6 +384,14 @@ typical word processor."
       (sql . t)
       (sqlite . t)))))
 
+;; Sample jar configuration
+;;(setq plantuml-jar-path "~/.emacs.d/orgtool/plantuml.jar")
+(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/orgtool/plantuml.jar"))
+(setq plantuml-default-exec-mode 'jar)
+
+;;Sample executable configuration
+;;(setq plantuml-executable-path "~/.emacs.d/orgtool/plantuml.jar")
+;;(setq plantuml-default-exec-mode 'executable)
 
 (provide 'init-org)
 ;;; init-org.el ends here
