@@ -53,6 +53,9 @@
   (with-eval-after-load 'magit
     (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))))
 
+;; by fu defing s-spc kebind
+(with-eval-after-load 'magit
+  (define-key magit-status-mode-map (kbd "S-SPC") 'set-mark-command))
 
 
 ;; Convenient binding for vc-git-grep

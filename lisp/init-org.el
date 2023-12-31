@@ -346,6 +346,8 @@ typical word processor."
 ;;                 (while (re-search-forward "^[a-z]" nil t)
 ;;                   (goto-char (match-beginning 0))
 ;;                   (insert "0:00-24:00 ")))
+
+
 ;;               (while (re-search-forward "^ [a-z]" nil t)
 ;;                 (goto-char (match-beginning 0))
 ;;                 (save-excursion
@@ -392,6 +394,36 @@ typical word processor."
 ;;Sample executable configuration
 ;;(setq plantuml-executable-path "~/.emacs.d/orgtool/plantuml.jar")
 ;;(setq plantuml-default-exec-mode 'executable)
+
+;; insert screenshot
+;; (require-package 'org-download)
+;; 解决terminal下cmy不管用的问题
+(require-package 'org-download)
+(add-hook 'dired-mode-hook 'org-download-enable)
+
+(use-package org-download
+  :after org
+  :defer nil
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "images")
+  (org-download-heading-lvl nil)
+  (org-download-timestamp "%Y%m%d-%H%M%S_")
+  (org-image-actual-width 300)
+  (org-html-image-default-width 300)
+  (org-download-screenshot-method "/opt/homebrew/bin/pngpaste %s")
+  :bind
+  ("C-M-y" . org-download-screenshot)
+  :config
+  ;; Function to add custom attribute line after #+DOWNLOADED: screenshot
+  (defun my/org-download-annotate-wrapper (link)
+    (concat (org-download-annotate-default link) "\n#+Attr_HTML: :width 50%\n"))
+  (setq org-download-annotate-function 'my/org-download-annotate-wrapper)
+  (require 'org-download)
+  )
+
+;; set image width
+;;(setq org-image-actual-width nil)
 
 (provide 'init-org)
 ;;; init-org.el ends here
