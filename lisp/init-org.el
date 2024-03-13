@@ -409,8 +409,8 @@ typical word processor."
   (org-download-image-dir "images")
   (org-download-heading-lvl nil)
   (org-download-timestamp "%Y%m%d-%H%M%S_")
-  (org-image-actual-width 300)
-  (org-html-image-default-width 300)
+  (org-image-actual-width 800)
+  (org-html-image-default-width 800)
   (org-download-screenshot-method "/opt/homebrew/bin/pngpaste %s")
   :bind
   ("C-M-y" . org-download-screenshot)
